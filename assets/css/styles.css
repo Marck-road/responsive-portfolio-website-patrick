@@ -32,6 +32,7 @@
   --body-font: "Poppins", sans-serif;
   --biggest-font-size: 2rem;
   --bigger-font-size: 1.25rem;
+  --title-font-size: 3.9rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
   --h3-font-size: 1rem;
@@ -275,11 +276,11 @@ svg {
 }
 
 .home__subtitle span, .home__title{
-  font-size: var(--first-color);
+  color: var(--first-color);
 }
 
 .home__title{
-  font-size: var(--biggest-font-size);
+  font-size: var(--title-font-size);
   font-weight: var(--font-semi-bold);
 }
 
@@ -309,10 +310,11 @@ svg {
 
 .home__image{
   justify-self: center;
+  height: 550px;
 }
 
 .home__blob{
-  width: 320px;
+  width: 300px;
   fill: var(--first-color);
   filter: drop-shadow(0 12px 12px hsla(var(--hue), 100%, 40%, .2));
 }
@@ -325,16 +327,17 @@ svg {
   border-radius: .5rem;
   color: var(--title-color);
   font-weight: var(--font-medium);
-  transition: box-shadow .4s;
+  transition: box-shadow, background-color .4s;
 }
 
 .button:hover{
   box-shadow: 0 8px 24px hsla(var(--hue), 100%, 40%, .25);
+  background-color: var(--first-color-alt);
 }
 
 /*=============== ABOUT ===============*/
 .about__container{
-  row-gap: 2.5rem;
+  row-gap: 5rem;
 }
 
 .about__data{
@@ -343,6 +346,11 @@ svg {
 
 .about__description{
   margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.about__subtitle{
+  text-align: left;
 }
 
 .about__image{
@@ -357,47 +365,57 @@ svg {
   stroke: var(--first-color);
 }
 
-/*=============== SKILLS ===============*/
+/*=============== SKILLS & CERTS ===============*/
 .skills{
   background-color: var(--container-color);
 }
 
-.skills__container{
+.skills__container, .certificates__container{
   padding-bottom: 2rem;
   row-gap: 3.5rem;
 }
 
-.skills__data{
+.skills__subtitle, .skills__title, .certificates__title, .certificates__subtitle{
+  text-align: left;
+}
+
+.skills__data, .certificates__data{
   text-align: center;
 }
 
-.skills__description{
+.skills__description, .certificates__description{
   margin-bottom: 2rem;
 }
 
+.certificates__description{
+  text-align: justify;
+}
+
 .skills__content, 
-.skills__group{
+.skills__group,
+.certificates__content,
+.certificates__group{
   display: grid;
 }
 
-.skills__content{
+.skills__content, .certificates__content{
   grid-template-columns: repeat(2, max-content);
   column-gap: 4rem;
   justify-content: center;
   align-items: baseline;
 }
 
-.skills__group{
+.skills__group, .certificates__group{
   row-gap: 1rem;
   list-style: decimal-leading-zero;
 }
 
-.skills__item{
+.skills__item, .certificates__item{
   font-weight: var(--font-medium);
   color: var(--title-color);
 }
 
-.skills__item::marker{
+.skills__item::marker , .certificates__item::marker{
   color: var(--first-color);
 }
 
@@ -478,10 +496,12 @@ svg {
 .projects__subtitle{
   display: block;
   margin-bottom: .25rem;
+  color: var(--first-color);
 }
 
 .projects__title{
   font-size: var(--h2-font-size);
+  text-align: center;
   margin-bottom: .75rem;
 }
 
@@ -500,6 +520,10 @@ svg {
   bottom: 0; 
 }
 /*=============== CONTACT ===============*/
+.contact{
+  background-color: var(--container-color);
+}
+
 .contact__container{
   padding-top: 1rem;
 }
@@ -517,7 +541,7 @@ svg {
 .contact__input{
   padding: 1rem 1.25rem;
   border-radius: .5rem;
-  background-color: var(--container-color);
+  background-color: var(--body-color);
   color: var(--title-color);
 }
 
@@ -643,13 +667,21 @@ svg {
     margin-inline: 1rem;
   }
   
-  .skills__content{
+  .skills__content, .certificates__content{
     grid-template-columns: max-content;
     row-gap: 1rem;
   }
 
   .services__card{
     padding-block: 1.5rem;
+  }
+
+  .about__subtitle,
+  .skills__subtitle, 
+  .skills__title, 
+  .certificates__title, 
+  .certificates__subtitle{
+    text-align: center;
   }
 }
 
@@ -660,6 +692,7 @@ svg {
   .skills__container,
   .services__container,
   .projects__container,
+  .certificates__container,
   .contact__container{
     grid-template-columns: 360px;
     justify-content: center;
@@ -673,7 +706,8 @@ svg {
 
   .home__container,
   .about__container,
-  .skills__container{
+  .skills__container,
+  .certificates__container{
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
   }
@@ -681,7 +715,8 @@ svg {
   .home__data,
   .about__data,
   .skills__data,
-  :is(.about__data, .skills__data) :is(.section__subtitle, .section__title){
+  .certificates__data
+  :is(.about__data, .skills__data, .certificates__data) :is(.section__subtitle, .section__title){
     text-align: initial;
   }
 
@@ -704,9 +739,17 @@ svg {
     justify-content: center;
   }
 
-  .skills__content{
+  .skills__content, .certificates__content{
     grid-template-columns: repeat(2, max-content);
     row-gap: 1rem;
+  }
+
+  .about__subtitle,
+  .skills__subtitle, 
+  .skills__title, 
+  .certificates__title, 
+  .certificates__subtitle{
+    text-align: left;
   }
 }
 
@@ -785,7 +828,7 @@ svg {
     margin-bottom: 3rem;
   }
 
-  .skills__container{
+  .skills__container, .certificates__container{
     grid-template-columns: 340px 425px;
     column-gap: 10rem;
     padding-bottom: 4rem;
